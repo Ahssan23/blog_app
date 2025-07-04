@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogVibe - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 font-serif text-gray-900">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 py-6 sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight">BlogVibe</h1>
+            <nav>
+                <a href="http://localhost:4000/profile" class="text-gray-600 hover:text-indigo-600 font-medium">My Profile</a>
+                <a href="http://localhost:4000/upload" class="text-gray-600 hover:text-indigo-600 font-medium">Upload</a>
+
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-8">Latest Posts</h2>
+            <% content.map(function(element, index){ %>
+                <div class="post-card bg-white rounded-lg shadow-sm border border-gray-200 mb-8 p-6 slide-up" style="animation-delay: <%= index * 0.2 %>s;">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3 mb-4 line-clamp-2"><%= element.title %></h2>
+                    <!-- <h2 class="text-2xl font-bold text-gray-900 mb-3"><%= element.name %></h2> -->
+                    <p class="text-gray-700 leading-relaxed mb-4 mb-4 line-clamp-5 truncate-lines"><%= element.content %></p>
+                    <div class="flex items-center justify-between">
+                        <form action="/follow" method="post">
+                            <input type="hidden" name="name" value="<%= element.name %>">
+                            <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition-colors duration-200 text-sm font-medium">
+                                Follow Author
+                            </button>
+                        </form>
+                        <form action="/full" method="get">
+                            <input type="hidden" value="<%= element.title %>" name="title">
+                            <input type="hidden" value="<%= element.content %>" name="content">
+                            <input type="hidden" value="<%= element._id %> "name='_id'>
+                            <input type="hidden" value="<%= element.name %>" name="author">
+
+                            <button type="submit">wanna read full page ? </button>
+
+
+
+
+                        </form>
+                        <span class="text-sm text-gray-500">Posted by <%= element.name %></span>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+        <!-- Profile Button -->
+        <div class="text-center mt-12">
+            <a href="http://localhost:4000/profile">
+                <button class="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-900 transition-colors duration-200 text-base font-medium">
+                    View Your Profile
+                </button>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">© 2025 BlogVibe. Share your story with the world.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-gray-400 hover:text-indigo-400 text-sm">About Us</a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 text-sm">Contact</a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 text-sm">Terms</a>
+            </div>
+        </div>
+    </footer>
+<style>
+    
+        .line-clamp-5 {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+</style>
+</body>
+</html>

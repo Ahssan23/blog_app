@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogVibe - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 font-serif text-gray-900">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 py-6 sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight">BlogVibe</h1>
+            <nav>
+                <a href="http://localhost:4000" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors">Home</a>
+                <a href="http://localhost:4000/profile" class="text-gray-600 hover:text-indigo-600 font-medium ml-4 transition-colors">My Profile</a>
+                <a href="http://localhost:4000/followers" class="text-gray-600 hover:text-indigo-600 font-medium ml-4 transition-colors">Followers</a>
+                <a href="http://localhost:4000/following" class="text-gray-600 hover:text-indigo-600 font-medium ml-4 transition-colors">Following</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <section class="max-w-md mx-auto bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center fade-in">Join BlogVibe</h1>
+            <p class="text-gray-600 mb-6 text-center fade-in" style="animation-delay: 0.1s;">Create your account to share your stories!</p>
+            <form action="/signup" method="post" class="flex flex-col gap-4">
+                <div class="fade-in" style="animation-delay: 0.2s;">
+                    <label for="name" class="text-gray-600 font-medium">Username</label>
+                    <input type="text" name="name" id="name" placeholder="Choose a username" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <% if (exists_username) { %>
+                        <p class="text-red-500 text-sm mt-1">Username already exists.</p>
+                    <% } %>
+                </div>
+                <div class="fade-in" style="animation-delay: 0.3s;">
+                    <label for="pass" class="text-gray-600 font-medium">Password</label>
+                    <input type="text" name="pass" id="pass" placeholder="Enter your password" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors fade-in" style="animation-delay: 0.4s;">Sign Up</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">© 2025 BlogVibe. Share your story with the world.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="text-gray-400 hover:text-indigo-400 text-sm transition-colors">About Us</a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 text-sm transition-colors">Contact</a>
+                <a href="#" class="text-gray-400 hover:text-indigo-400 text-sm transition-colors">Terms</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
